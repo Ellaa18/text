@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Image Text Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="editor">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">T</div>
+      <div class="brand-copy">
+        <h1>Image Text Editor</h1>
+        <p>Detect, edit, and save text on your image</p>
+      </div>
+      <span class="local-badge"><span></span> Private &amp; local</span>
+    </header>
+
+    <section class="toolbar" aria-label="Image editing actions">
+      <div class="tool-instructions"><span class="tool-icon" aria-hidden="true">Aa</span><span><strong>Editable text</strong><small>Detect text, select a box, then edit</small></span></div>
+      <div class="actions">
+        <label class="language-picker">OCR language
+          <select id="ocrLanguage" aria-label="OCR language">
+            <option value="eng" selected>English letters and numbers</option>
+          </select>
+        </label>
+        <button id="ocrBtn" class="button button-subtle" type="button">Detect text</button>
+        <button id="addTextBtn" class="button button-subtle" type="button" disabled>＋ Text</button>
+        <button id="downloadBtn" class="button button-primary" type="button" disabled>Save image</button>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <aside class="panel" aria-label="Selected text settings">
+        <div class="panel-heading"><span class="selected-dot"></span><h2>Selected text</h2></div>
+        <p class="panel-help" id="selectionHint">Detect text, then select a word. Typing previews directly on the image; export keeps your changes.</p>
+        <label class="field-label" for="textValue">Text</label>
+        <textarea id="textValue" rows="3" placeholder="Select a word to edit…" disabled></textarea>
+        <div class="field-grid">
+          <label class="field-label" for="fontFamily">Font
+            <select id="fontFamily" disabled><option>Arial</option><option>Georgia</option><option>Times New Roman</option><option>Verdana</option><option>Courier New</option><option>Noto Sans Arabic</option><option>Noto Sans Ethiopic</option></select>
+          </label>
+          <label class="field-label" for="fontWeight">Weight
+            <select id="fontWeight" disabled><option value="bold" selected>Bold</option><option value="normal">Regular</option></select>
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field-label" for="fontSize">Size
+            <span class="size-control"><button id="sizeDown" type="button" aria-label="Decrease font size" disabled>−</button><input id="fontSize" type="number" min="6" max="180" value="24" disabled><button id="sizeUp" type="button" aria-label="Increase font size" disabled>+</button></span>
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field-label" for="textColor">Text color<input id="textColor" type="color" value="#222222" disabled></label>
+          <label class="field-label" for="bgColor">Patch color<input id="bgColor" type="color" value="#ffffff" disabled></label>
+        </div>
+        <label class="check-row"><input id="bgEnabled" type="checkbox" checked disabled> Cover original text</label>
+        <label class="field-label" for="textAlign">Alignment
+          <select id="textAlign" disabled><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select>
+        </label>
+        <button id="deleteBtn" class="button button-delete" type="button" disabled>Delete text box</button>
+        <p class="privacy-note">Text changes preview as you type. The source image stays unchanged until you save a copy.</p>
+      </aside>
+
+      <section class="canvas-stage" aria-label="Editable image canvas">
+        <div class="canvas-frame">
+          <canvas id="canvas" aria-label="Image. Select detected text boxes or drag to move them."></canvas>
+          <div id="loading" class="loading">Loading v.jpg…</div>
+        </div>
+        <div id="status" class="status">Ready to load image.</div>
+      </section>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

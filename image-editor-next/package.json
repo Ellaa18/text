@@ -1,0 +1,30 @@
+{
+  "name": "image-editor-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "ocr": "python -m uvicorn main:app --host 127.0.0.1 --port 8001 --app-dir ocr-service",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "next": "16.3.7",
+    "fabric": "^7.1.0",
+    "@fontsource/noto-sans-arabic": "^5.2.6",
+    "@fontsource/noto-sans-ethiopic": "^5.2.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.7",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
